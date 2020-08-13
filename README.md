@@ -9,12 +9,12 @@ It then creates and assigns a copy of the mesh.
 Next it resets the transform scale.
 Lastly, it overwrites the vertex positions and inverts the Mesh.triangles array (to flip the normals).
 
-## How to Use
+### How to Use
 Apply the script to a GameObject with negative scale.
 Click the "Normalize" Button.
 Done!
 (You can now remove the script again)
 
-## Todo
+### Todo
 - Add Undo Support
 - Make it an Editor Window instead of a Component
