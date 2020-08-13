@@ -6,7 +6,7 @@ Colliders sometimes also complain about negative scale and this could help solve
 ### How it works
 - The script first stores the world positions of the vertices of the mesh.
 - It then creates and assigns a copy of the mesh.
-- Next it resets the transform scale.
+- Next it resets [transform.localScale](https://docs.unity3d.com/ScriptReference/Transform-localScale.html "Unity Scripting Reference").
 - Lastly, it overwrites the vertex positions and inverts the [Mesh.triangles](https://docs.unity3d.com/ScriptReference/Mesh-triangles.html "Unity Scripting Reference") array (to flip the normals).
 
 ### How to Use
