@@ -7,7 +7,7 @@ Colliders sometimes also complain about negative scale and this could help solve
 The script first stores the world positions of the vertices of the mesh.
 It then creates and assigns a copy of the mesh.
 Next it resets the transform scale.
-Lastly, it overwrites the vertex positions and inverts the Mesh.triangles array (to flip the normals).
+Lastly, it overwrites the vertex positions and inverts the [Mesh.triangles](https://docs.unity3d.com/ScriptReference/Mesh-triangles.html "Unity Scripting Reference") array (to flip the normals).
 
 ### How to Use
 Apply the script to a GameObject with negative scale.
