@@ -1,6 +1,6 @@
 # Unity Tools
 ## Normalize Meshes
-The MeshNormilzer script makes sure that any objects with a negative scale are set to scale (1, 1, 1) but keeps their shape.
+The MeshNormalizer script makes sure that any objects with a negative scale are set to scale (1, 1, 1) but keeps their shape.
 This is useful for certain operations which do not support negative scale.
 Colliders sometimes also complain about negative scale and this could help solve the issue.
 ### How it works
