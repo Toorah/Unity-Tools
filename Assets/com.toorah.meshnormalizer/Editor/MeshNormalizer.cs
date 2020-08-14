@@ -12,7 +12,7 @@ public class MeshNormalizer : MonoBehaviour
 
     [SerializeField] MeshFilter m_filter;
     public Mesh Mesh => m_filter.sharedMesh;
-
+    public MeshFilter Filter => m_filter;
 
     private void OnValidate()
     {
@@ -21,28 +21,6 @@ public class MeshNormalizer : MonoBehaviour
     private void Reset()
     {
         m_filter = GetComponent<MeshFilter>();
-    }
-
-    public void NormalizeMesh()
-    {
-        var verts = Mesh.vertices;
-        for(int i = 0; i < verts.Length; i++)
-        {
-            verts[i] = transform.TransformPoint(verts[i]);
-        }
-
-        Mesh mesh = Instantiate(Mesh);
-        m_filter.sharedMesh = mesh;
-        transform.localScale = Vector3.one;
-        for (int i = 0; i < verts.Length; i++)
-        {
-            verts[i] = transform.InverseTransformPoint(verts[i]);
-        }
-
-
-        mesh.vertices = verts;
-        mesh.triangles = mesh.triangles.Reverse().ToArray();
-        mesh.RecalculateNormals();
     }
 }
 
@@ -79,8 +57,37 @@ public class MeshNormalizerEditor : Editor
 
         if (GUILayout.Button("Normalize"))
         {
-            m_target.NormalizeMesh();
+            NormalizeMesh();
         }
+    }
+
+    void NormalizeMesh()
+    {
+        string undoName = $"Normalize Mesh \"{m_target.gameObject.name}\"";
+
+        Undo.RecordObject(m_target.transform, undoName);
+        Undo.RecordObject(m_target.Filter, undoName);
+
+        var verts = m_target.Mesh.vertices;
+        for (int i = 0; i < verts.Length; i++)
+        {
+            verts[i] = m_target.transform.TransformPoint(verts[i]);
+        }
+
+        Mesh mesh = Instantiate(m_target.Mesh);
+        Undo.RegisterCreatedObjectUndo(mesh, undoName);
+        m_target.Filter.sharedMesh = mesh;
+        m_target.transform.localScale = Vector3.one;
+        for (int i = 0; i < verts.Length; i++)
+        {
+            verts[i] = m_target.transform.InverseTransformPoint(verts[i]);
+        }
+
+
+        mesh.vertices = verts;
+        mesh.triangles = mesh.triangles.Reverse().ToArray();
+        mesh.RecalculateNormals();
+        Undo.FlushUndoRecordObjects();
     }
 }
 #endif
