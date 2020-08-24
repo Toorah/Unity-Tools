@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <uie:ObjectField label="Transform" type="UnityEngine.Transform, UnityEngine.CoreModule" name="transform" />
+    <uie:Vector3Field label="Scale" name="size" />
+    <ui:VisualElement style="flex-grow: 1; flex-shrink: 0;" />
+    <ui:Button text="Normalize Transform" name="button" style="height: 50px; font-size: 18px; white-space: normal;" />
+</ui:UXML>
