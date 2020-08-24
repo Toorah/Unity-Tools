@@ -16,5 +16,4 @@ Done!
 (You can now remove the script again)
 
 ### Todo
-- Add [Undo](https://docs.unity3d.com/ScriptReference/Undo.html "Unity Scripting Reference") Support
 - Make it an Editor Window instead of a Component
